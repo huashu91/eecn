@@ -1,0 +1,19 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.halfwidth {
+	width:50%;
+	margin:0 auto;
+}
+
+.info_table {
+	width:80%;
+	margin:0 auto;
+	text-align:left;
+	border:1px;
+}

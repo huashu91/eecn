@@ -4,16 +4,16 @@ import java.util.Vector;
 import java.sql.*;
 
 public class queryStudent {
-	int element;
+	public int element;
 	ADO ado = null;
-	Vector<String> id = new Vector<String>();
-	Vector<String> name = new Vector<String>();
-	Vector<String> gender = new Vector<String>();
-	Vector<String> grade = new Vector<String>();
-	Vector<String> classs = new Vector<String>();
-	Vector<String> idcard = new Vector<String>();
-	Vector<String> school = new Vector<String>();
-	Vector<String> other = new Vector<String>();
+	public Vector<String> id = new Vector<String>();
+	public Vector<String> name = new Vector<String>();
+	public Vector<String> gender = new Vector<String>();
+	public Vector<String> grade = new Vector<String>();
+	public Vector<String> classs = new Vector<String>();
+	public Vector<String> idcard = new Vector<String>();
+	public Vector<String> school = new Vector<String>();
+	public Vector<String> other = new Vector<String>();
 	
 	public queryStudent() {
 		ado = new ADO("root", "123321", "testsport");
