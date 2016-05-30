@@ -152,6 +152,19 @@ public class Game {
 		}
 	}
 	
+	public boolean deleteGame(String id) {
+		String sql = "DELETE FROM game WHERE id = '" + id + "'";
+		try {
+			PreparedStatement pst = ado.getPst(sql);
+			int result = pst.executeUpdate();
+			if(result > 0) return true;
+			else return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public void cls() {
 		this.id.clear();
 		this.name.clear();

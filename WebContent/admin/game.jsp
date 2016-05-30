@@ -105,6 +105,7 @@ qg.queryGame();
       		out.print("<td>" + qg.event.elementAt(i) + "</td>");
       		out.print("<td>" + qg.status.elementAt(i) + "</td>");
       		out.print("<td>" + qg.other.elementAt(i) + "</td>");
+      		out.print("<td><a href='delete.jsp?action=game&id=" + qg.id.elementAt(i) + "'>删除</a></td>");
       		out.print("</tr>");
       	}
       	out.print("</table>");

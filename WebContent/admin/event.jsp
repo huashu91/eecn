@@ -94,6 +94,7 @@ qe.queryEvent();
       		out.print("<td>" + qe.host.elementAt(i) + "</td>");
       		out.print("<td>" + qe.time.elementAt(i) + "</td>");
       		out.print("<td>" + qe.other.elementAt(i) + "</td>");
+      		out.print("<td><a href='delete.jsp?action=event&id=" + qe.id.elementAt(i) + "'>删除</a></td>");
       		out.print("</tr>");
       	}
       	out.print("</table>");
