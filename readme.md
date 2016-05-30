@@ -32,7 +32,7 @@ group2	text	组别（小学/初中/职中/高中/职高）
 status	text	比赛状态（未开放/报名阶段/比赛阶段/已结束）
 other	text	其他比赛信息（报名起始和结束时间...）
 
-ii.admin（管理员表）
+#####+ ii.admin（管理员表）
 字段名	类型	备注
 id	int	自动生成的索引标识
 username	text	管理员用户名
@@ -40,7 +40,7 @@ password	text	管理员密码
 authority	text	管理员权限等级
 other	text	其他
 
-iii.student（学生表）
+#####+ iii.student（学生表）
 字段名	类型	备注
 id	int	自动生成的索引标识
 name	text	学生姓名
@@ -51,13 +51,13 @@ idcard	text	学生身份证号
 school	text	学生所在学校
 other	text	其他
 
-iv.sign（报名表）
+#####+ iv.sign（报名表）
 字段名	类型	备注
 studentid	int	报名学生id
 gameid	id	学生所报比赛的id
 other	text	其他
 
-v.
+#####+ v.
 d)关键数据内容
 e)
 ###三、程序源码文档
