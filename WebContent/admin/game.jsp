@@ -16,7 +16,8 @@ String h2title3 = web.h2title3;
 String h2content3 = web.h2content3;
 %>
 <%
-queryEvent qe = new queryEvent();
+Game qg = new Game();
+qg.queryGame();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +66,7 @@ queryEvent qe = new queryEvent();
           <ul class="nav navbar-nav">
             <li><a href="admin.jsp">后台首页</a></li>
             <li><a href="webconfig.jsp">网站设置</a></li>
+            <li><a href="event.jsp">赛事管理</a></li>
             <li class="active"><a href="game.jsp">比赛管理</a></li>
             <li><a href="school.jsp">学校管理</a></li>
             <li><a href="#contact">其他</a></li>
@@ -76,16 +78,33 @@ queryEvent qe = new queryEvent();
     <div class="container">
 
       <div class="starter-template">
+      <form>
+      <input type="text" placeholder="输入赛事名称进行查找" class="form-control halfwidth" name="h2title3">
+      <button type="submit" class="btn btn-success">查找比赛</button>
+      <button class="btn btn-success" onclick="javascript:window.open('newGame.jsp')">添加比赛</button>
+      </form>
+      <hr />
       	<%
+      	String group1 = null;
+  		String group2 = null;
       	out.print("<table class='info_table'>");
-      	out.print("<tr><th>比赛ID</th><th>比赛名称</th><th>比赛组别</th><th>比赛年级</th><th>其他</th></tr>");
-      	for(int i = 0; i < qe.element; i++) {
+      	out.print("<tr><th>比赛ID</th><th>比赛名称</th><th>性别组别</th><th>年级组别</th><th>所属赛事</th><th>比赛状态</th><th>其他</th></tr>");
+      	for(int i = 0; i < qg.element; i++) {
+      		if(qg.group1.elementAt(i).equals("girl")) group1 = "女子组";
+      		if(qg.group1.elementAt(i).equals("boy")) group1 = "男子组";
+      		if(qg.group2.elementAt(i).equals("primary")) group2 = "小学组";
+      		if(qg.group2.elementAt(i).equals("junior")) group2 = "初中组";
+      		if(qg.group2.elementAt(i).equals("extjunior")) group2 = "职中组";
+      		if(qg.group2.elementAt(i).equals("senior")) group2 = "高中组";
+      		if(qg.group2.elementAt(i).equals("extsenior")) group2 = "职高组";
       		out.print("<tr>");
-      		out.print("<td>" + qe.id.elementAt(i) + "</td>");
-      		out.print("<td>" + qe.name.elementAt(i) + "</td>");
-      		out.print("<td>" + qe.host.elementAt(i) + "</td>");
-      		out.print("<td>" + qe.time.elementAt(i) + "</td>");
-      		out.print("<td>" + qe.other.elementAt(i) + "</td>");
+      		out.print("<td>" + qg.id.elementAt(i) + "</td>");
+      		out.print("<td><a href='editEvent.jsp?id=" + qg.id.elementAt(i) + "'>" + qg.name.elementAt(i) + "</a></td>");
+      		out.print("<td>" + group1 + "</td>");
+      		out.print("<td>" + group2 + "</td>");
+      		out.print("<td>" + qg.event.elementAt(i) + "</td>");
+      		out.print("<td>" + qg.status.elementAt(i) + "</td>");
+      		out.print("<td>" + qg.other.elementAt(i) + "</td>");
       		out.print("</tr>");
       	}
       	out.print("</table>");
@@ -102,5 +121,15 @@ queryEvent qe = new queryEvent();
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+     <script type="text/javascript">
+    
+    <!--
+    function newWindow() {
+    	window.location.href('newEvent.jsp');
+    }
+    
+    -->
+    
+    </script> 
   </body>
 </html>

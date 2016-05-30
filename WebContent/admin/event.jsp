@@ -15,6 +15,10 @@ String h2content2 = web.h2content2;
 String h2title3 = web.h2title3;
 String h2content3 = web.h2content3;
 %>
+<%
+Event qe = new Event();
+qe.queryEvent();
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,12 +31,9 @@ String h2content3 = web.h2content3;
     <link rel="icon" href="../../favicon.ico">
 
     <title><%=webname %></title>
-    
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
@@ -64,7 +65,8 @@ String h2content3 = web.h2content3;
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="admin.jsp">后台首页</a></li>
-            <li class="active"><a href="webconfig.jsp">网站设置</a></li>
+            <li><a href="webconfig.jsp">网站设置</a></li>
+            <li class="active"><a href="event.jsp">赛事管理</a></li>
             <li><a href="game.jsp">比赛管理</a></li>
             <li><a href="school.jsp">学校管理</a></li>
             <li><a href="#contact">其他</a></li>
@@ -75,43 +77,29 @@ String h2content3 = web.h2content3;
 
     <div class="container">
 
-
-	
       <div class="starter-template">
-      <form method=post action="updateWeb.jsp">
-        <div class="form-group">
-              网站名称：<input type="text" value="<%=webname %>" class="form-control halfwidth" name="webname">
-        </div>
-        <div class="form-group">
-              网站地址：<input type="text" value="<%=weburl %>" class="form-control halfwidth" name="weburl">
-        </div>
-        <div class="form-group">
-              首页标题一：<input type="text" value="<%=h1title %>" class="form-control halfwidth" name="h1title">
-        </div>
-        <div class="form-group">
-              首页内容一：<textarea class="form-control halfwidth" rows="4" name="h1content"><%=h1content %></textarea>
-        </div>
-        <div class="form-group">
-              首页标题二：<input type="text" value="<%=h2title1 %>" class="form-control halfwidth" name="h2title1">
-        </div>
-        <div class="form-group">
-              首页内容二：<textarea class="form-control halfwidth" rows="4" name="h2content1"><%=h2content1 %></textarea>
-        </div>
-        <div class="form-group">
-              首页标题三：<input type="text" value="<%=h2title2 %>" class="form-control halfwidth" name="h2title2">
-        </div>
-        <div class="form-group">
-              首页内容三：<textarea class="form-control halfwidth" rows="4" name="h2content2"><%=h2content2 %></textarea>
-        </div>
-        <div class="form-group">
-              首页标题四：<input type="text" value="<%=h2title3 %>" class="form-control halfwidth" name="h2title3">
-        </div>
-        <div class="form-group">
-              首页内容四：<textarea class="form-control halfwidth" rows="4" name="h2content3"><%=h2content3 %></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">保存信息</button>
-        </form>
+      <form>
+      <input type="text" placeholder="输入赛事名称进行查找" class="form-control halfwidth" name="h2title3">
+      <button type="submit" class="btn btn-success">查找赛事</button>
+      <button class="btn btn-success" onclick="javascript:window.open('newEvent.jsp')">添加赛事</button>
+      </form>
+      <hr />
+      	<%
+      	out.print("<table class='info_table'>");
+      	out.print("<tr><th>赛事ID</th><th>赛事名称</th><th>主办方</th><th>进行时间</th><th>其他</th></tr>");
+      	for(int i = 0; i < qe.element; i++) {
+      		out.print("<tr>");
+      		out.print("<td>" + qe.id.elementAt(i) + "</td>");
+      		out.print("<td><a href='editEvent.jsp?id=" + qe.id.elementAt(i) + "'>" + qe.name.elementAt(i) + "</a></td>");
+      		out.print("<td>" + qe.host.elementAt(i) + "</td>");
+      		out.print("<td>" + qe.time.elementAt(i) + "</td>");
+      		out.print("<td>" + qe.other.elementAt(i) + "</td>");
+      		out.print("</tr>");
+      	}
+      	out.print("</table>");
+      	%>
       </div>
+
     </div><!-- /.container -->
 
 
@@ -122,5 +110,15 @@ String h2content3 = web.h2content3;
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+     <script type="text/javascript">
+    
+    <!--
+    function newWindow() {
+    	window.location.href('newEvent.jsp');
+    }
+    
+    -->
+    
+    </script> 
   </body>
 </html>

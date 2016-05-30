@@ -59,7 +59,7 @@ String h2content3 = web.h2content3;
           <a class="navbar-brand" href="<%=weburl %>"><%=webname %></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" method=post action="verify.jsp">
+          <form class="navbar-form navbar-right" method=post action="admin/verify.jsp">
             <div class="form-group">
               <input type="text" placeholder="用户名" class="form-control" name="username">
             </div>

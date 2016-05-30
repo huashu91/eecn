@@ -62,6 +62,7 @@ String h2content3 = web.h2content3;
           <ul class="nav navbar-nav">
             <li><a href="admin.jsp">后台首页</a></li>
             <li><a href="webconfig.jsp">网站设置</a></li>
+            <li><a href="event.jsp">赛事管理</a></li>
             <li><a href="game.jsp">比赛管理</a></li>
             <li class="active"><a href="school.jsp">学校管理</a></li>
             <li><a href="#contact">其他</a></li>
