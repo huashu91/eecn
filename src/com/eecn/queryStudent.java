@@ -85,6 +85,27 @@ public class queryStudent {
 		}
 	}
 	
+	public void queryBySchool(String school) {
+		String sql = "SELECT * FROM student WHERE school = '" + school + "'";
+		ResultSet ret = ado.getRet(sql);
+		if(ret != null) {
+			try {
+				while(ret.next()) {
+					this.id.add(ret.getString(1));
+					this.name.add(ret.getString(2));
+					this.gender.add(ret.getString(3));
+					this.grade.add(ret.getString(4));
+					this.classs.add(ret.getString(5));
+					this.idcard.add(ret.getString(6));
+					this.school.add(ret.getString(7));
+					this.other.add(ret.getString(8));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void cls() {
 		this.id.clear();
 		this.name.clear();

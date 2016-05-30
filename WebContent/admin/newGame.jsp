@@ -3,6 +3,7 @@
 <%@ page import="com.eecn.*" %>
 <%
 request.setCharacterEncoding("utf-8");
+if(session.getAttribute("username") == null || session.getAttribute("username").toString().isEmpty()) response.sendRedirect("../index.jsp");
 String name = request.getParameter("name");
 String group1 = request.getParameter("group1");
 String group2 = request.getParameter("group2");

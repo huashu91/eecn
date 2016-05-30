@@ -2,7 +2,6 @@
     pageEncoding="utf-8"%>
 <%@ page import="com.eecn.*" %>
 <%
-if(session.getAttribute("username") == null || session.getAttribute("username").toString().isEmpty()) response.sendRedirect("../index.jsp");
 Web web = new Web();
 web.getInfo();
 String webname = web.webname;
@@ -16,6 +15,12 @@ String h2content2 = web.h2content2;
 String h2title3 = web.h2title3;
 String h2content3 = web.h2content3;
 %>
+<%
+String username = session.getAttribute("user").toString();
+queryStudent qs = new queryStudent();
+String school = session.getAttribute("school").toString();
+qs.queryBySchool(school);
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,12 +33,9 @@ String h2content3 = web.h2content3;
     <link rel="icon" href="../../favicon.ico">
 
     <title><%=webname %></title>
-    
+
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
@@ -64,11 +66,10 @@ String h2content3 = web.h2content3;
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="admin.jsp">后台首页</a></li>
-            <li class="active"><a href="webconfig.jsp">网站设置</a></li>
-            <li><a href="event.jsp">赛事管理</a></li>
-            <li><a href="game.jsp">比赛管理</a></li>
-            <li><a href="school.jsp">学校管理</a></li>
+            <li><a href="user.jsp">后台首页</a></li>
+            <li class="active"><a href="student.jsp">学生管理</a></li>
+            <li><a href="sign.jsp">比赛管理</a></li>
+            <li><a href="i.jsp">我的信息</a></li>
             <li><a href="#contact">其他</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -77,43 +78,28 @@ String h2content3 = web.h2content3;
 
     <div class="container">
 
-
-	
       <div class="starter-template">
-      <form method=post action="updateWeb.jsp">
-        <div class="form-group">
-              网站名称：<input type="text" value="<%=webname %>" class="form-control halfwidth" name="webname">
-        </div>
-        <div class="form-group">
-              网站地址：<input type="text" value="<%=weburl %>" class="form-control halfwidth" name="weburl">
-        </div>
-        <div class="form-group">
-              首页标题一：<input type="text" value="<%=h1title %>" class="form-control halfwidth" name="h1title">
-        </div>
-        <div class="form-group">
-              首页内容一：<textarea class="form-control halfwidth" rows="4" name="h1content"><%=h1content %></textarea>
-        </div>
-        <div class="form-group">
-              首页标题二：<input type="text" value="<%=h2title1 %>" class="form-control halfwidth" name="h2title1">
-        </div>
-        <div class="form-group">
-              首页内容二：<textarea class="form-control halfwidth" rows="4" name="h2content1"><%=h2content1 %></textarea>
-        </div>
-        <div class="form-group">
-              首页标题三：<input type="text" value="<%=h2title2 %>" class="form-control halfwidth" name="h2title2">
-        </div>
-        <div class="form-group">
-              首页内容三：<textarea class="form-control halfwidth" rows="4" name="h2content2"><%=h2content2 %></textarea>
-        </div>
-        <div class="form-group">
-              首页标题四：<input type="text" value="<%=h2title3 %>" class="form-control halfwidth" name="h2title3">
-        </div>
-        <div class="form-group">
-              首页内容四：<textarea class="form-control halfwidth" rows="4" name="h2content3"><%=h2content3 %></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">保存信息</button>
-        </form>
+        <%
+      	String group1 = null;
+  		String group2 = null;
+      	out.print("<table class='info_table'>");
+      	out.print("<tr><th>学生ID</th><th>学生姓名</th><th>学生性别</th><th>学生年级</th><th>学生班级</th><th>身份证号</th><th>其他</th></tr>");
+      	for(int i = 0; i < qs.element; i++) {
+      		out.print("<tr>");
+      		out.print("<td>" + qs.id.elementAt(i) + "</td>");
+      		out.print("<td><a href='editStudent.jsp?id=" + qs.id.elementAt(i) + "'>" + qs.name.elementAt(i) + "</a></td>");
+      		out.print("<td>" + qs.gender.elementAt(i) + "</td>");
+      		out.print("<td>" + qs.grade.elementAt(i) + "</td>");
+      		out.print("<td>" + qs.classs.elementAt(i) + "</td>");
+      		out.print("<td>" + qs.idcard.elementAt(i) + "</td>");
+      		out.print("<td>" + qs.other.elementAt(i) + "</td>");
+      		out.print("<td><a href='delete.jsp?action=student&id=" + qs.id.elementAt(i) + "'>删除</a></td>");
+      		out.print("</tr>");
+      	}
+      	out.print("</table>");
+      	%>
       </div>
+
     </div><!-- /.container -->
 
 

@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ page import="com.eecn.*" %>
 <%
+if(session.getAttribute("username") == null || session.getAttribute("username").toString().isEmpty()) response.sendRedirect("../index.jsp");
 Web web = new Web();
 web.getInfo();
 String webname = web.webname;

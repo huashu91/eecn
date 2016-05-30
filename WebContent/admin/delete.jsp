@@ -9,6 +9,7 @@
 </head>
 <body>
 <%
+if(session.getAttribute("username") == null || session.getAttribute("username").toString().isEmpty()) response.sendRedirect("../index.jsp");
 String action = request.getParameter("action");
 String id = request.getParameter("id");
 if(action.equals("game")) {

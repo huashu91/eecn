@@ -2,6 +2,7 @@
 	pageEncoding="utf-8" %>
 <%@ page import="com.eecn.*" %>
 <%
+session.setAttribute("username", "");
 Web web = new Web();
 web.getInfo();
 String webname = web.webname;
@@ -77,7 +78,7 @@ String h2content3 = web.h2content3;
       <div class="container">
         <h1><%=h1title %></h1>
         <p><%=h1content %></p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">参加比赛 &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" href="user/login.jsp" role="button">参加比赛 &raquo;</a></p>
       </div>
     </div>
 
